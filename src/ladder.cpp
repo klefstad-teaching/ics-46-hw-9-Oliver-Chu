@@ -31,7 +31,6 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
             }
         }
     }
-    cout << "No word ladder found." << endl;
     return {};
 }
 
@@ -77,9 +76,14 @@ void error(string word1, string word2, string msg) {
 }
 
 void print_word_ladder(const vector<string>& ladder) {
+    if (ladder.size() == 0) {
+        cout << "No word ladder found.";
+    }
+
     for (int i = 0; i < ladder.size(); ++i) {
         cout << ladder[i] << " ";
     }
+    
     cout << endl;
 }
 
@@ -99,7 +103,7 @@ void my_assert(bool check) {
 }
 void verify_word_ladder() {
     set<string> word_list;
-    load_words(word_list, "words.txt");
+    load_words(word_list, "/home/ojchu/ICS46/HW9/src/words.txt");
     my_assert(generate_word_ladder("cat", "dog", word_list).size() == 4);
     my_assert(generate_word_ladder("marty", "curls", word_list).size() == 6);
     my_assert(generate_word_ladder("code", "data", word_list).size() == 6);
